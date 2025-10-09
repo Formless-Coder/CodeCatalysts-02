@@ -1,0 +1,193 @@
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Page Title -->
+    <div class="mb-10">
+        <h1 class="text-3xl font-bold text-white">Document Upload Center</h1>
+        <p class="text-gray-400 mt-1 max-w-3xl">Upload compliance documents to keep your business on track. Our AI automatically analyzes your documents for potential issues.</p>
+    </div>
+
+    <!-- Upload Form -->
+    <div class="glass-card rounded-xl p-6 md:p-8 shadow-lg">
+        <h2 class="text-xl font-semibold text-white mb-6">Upload New Document</h2>
+        <form class="space-y-6" id="upload-form">
+            <div>
+                <label for="compliance-type" class="block text-sm font-medium text-gray-300 mb-2">Compliance Item Type</label>
+                <select id="compliance-type" name="compliance-type" class="custom-select w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="">Select compliance type</option>
+                    <option value="gst">GST Filings</option>
+                    <option value="pf">Provident Fund (PF)</option>
+                    <option value="license">Licenses & Registrations</option>
+                    <option value="tax">Income Tax</option>
+                </select>
+            </div>
+
+             <div>
+                <label for="associated-item" class="block text-sm font-medium text-gray-300 mb-2">Associated Compliance Item (Optional)</label>
+                <select id="associated-item" name="associated-item" class="custom-select w-full bg-white/5 border border-white/10 rounded-lg py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="">Select a compliance item</option>
+                    <option value="gstr-3b">GSTR-3B Return</option>
+                    <option value="pf-challan">PF Monthly Challan</option>
+                    <option value="shop-license">Shop & Establishment License</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Document File</label>
+                <div id="dropzone" class="relative flex justify-center items-center w-full h-32 px-6 py-10 border-2 border-dashed border-gray-600 rounded-lg hover:border-gray-400 transition-colors cursor-pointer">
+                    <div class="text-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-auto mb-4 text-gray-400"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14,2 14,8 20,8"></polyline></svg>
+                        <p id="dropzone-text" class="text-sm text-gray-400">Click to upload a file or drag and drop</p>
+                        <p class="text-xs text-gray-500 mt-1">PDF, DOC, DOCX, JPG, PNG up to 10MB</p>
+                    </div>
+                    <input type="file" id="file-upload" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                </div>
+            </div>
+
+            <div class="flex justify-end pt-4">
+                <button type="submit" class="bg-teal-500 hover:bg-teal-600 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
+                    Upload Document
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Uploaded Documents List -->
+    <div class="mt-12">
+         <div class="flex flex-col md:flex-row justify-between md:items-center mb-6">
+            <h2 class="text-2xl font-bold text-white">Uploaded Documents</h2>
+             <div class="mt-4 md:mt-0">
+                 <label for="filter-type" class="sr-only">Filter by Type</label>
+                 <select id="filter-type" name="filter-type" class="custom-select bg-white/5 border border-white/10 rounded-lg py-2 pl-3 pr-8 text-white focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <option value="">Filter by Type...</option>
+                    <option value="gst">GST Filings</option>
+                    <option value="pf">Provident Fund (PF)</option>
+                    <option value="license">Licenses & Registrations</option>
+                </select>
+             </div>
+         </div>
+         <div class="glass-card rounded-lg overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-white/5">
+                        <tr>
+                            <th class="p-4 font-semibold">Document Name</th>
+                            <th class="p-4 font-semibold">Type</th>
+                            <th class="p-4 font-semibold">Upload Date</th>
+                            <th class="p-4 font-semibold">Status</th>
+                            <th class="p-4 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documents-table-body">
+                        <tr class="border-t border-white/10">
+                            <td class="p-4">GSTR-3B-Sep-2025.pdf</td>
+                            <td class="p-4">GST Filings</td>
+                            <td class="p-4">Oct 8, 2025</td>
+                            <td class="p-4"><span class="bg-green-500/20 text-green-300 text-xs font-semibold px-2 py-1 rounded-full">Verified</span></td>
+                            <td class="p-4 text-right">
+                                <button class="text-teal-400 hover:text-teal-300 font-semibold mr-4">View</button>
+                                <button class="text-red-400 hover:text-red-300 font-semibold">Delete</button>
+                            </td>
+                        </tr>
+                        <tr class="border-t border-white/10">
+                            <td class="p-4">Shop-License-Renewal.pdf</td>
+                            <td class="p-4">Licenses</td>
+                            <td class="p-4">Sep 15, 2025</td>
+                            <td class="p-4"><span class="bg-green-500/20 text-green-300 text-xs font-semibold px-2 py-1 rounded-full">Verified</span></td>
+                            <td class="p-4 text-right">
+                                <button class="text-teal-400 hover:text-teal-300 font-semibold mr-4">View</button>
+                                <button class="text-red-400 hover:text-red-300 font-semibold">Delete</button>
+                            </td>
+                        </tr>
+                         <tr class="border-t border-white/10">
+                            <td class="p-4">PF-Challan-Aug-2025.pdf</td>
+                            <td class="p-4">Provident Fund (PF)</td>
+                            <td class="p-4">Sep 12, 2025</td>
+                            <td class="p-4"><span class="bg-yellow-500/20 text-yellow-300 text-xs font-semibold px-2 py-1 rounded-full">Pending</span></td>
+                            <td class="p-4 text-right">
+                                <button class="text-teal-400 hover:text-teal-300 font-semibold mr-4">View</button>
+                                <button class="text-red-400 hover:text-red-300 font-semibold">Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+         </div>
+    </div>
+</div>
+
+<script>
+    // File upload functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const fileUpload = document.getElementById('file-upload');
+        const dropzone = document.getElementById('dropzone');
+        const dropzoneText = document.getElementById('dropzone-text');
+        const uploadForm = document.getElementById('upload-form');
+        
+        if (fileUpload && dropzoneText) {
+            // Handle file selection
+            fileUpload.addEventListener('change', function() {
+                if (fileUpload.files.length > 0) {
+                    const file = fileUpload.files[0];
+                    dropzoneText.textContent = file.name;
+                } else {
+                    dropzoneText.textContent = 'Click to upload a file or drag and drop';
+                }
+            });
+
+            // Handle drag and drop
+            dropzone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                dropzone.classList.add('border-teal-500');
+            });
+
+            dropzone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                dropzone.classList.remove('border-teal-500');
+            });
+
+            dropzone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                dropzone.classList.remove('border-teal-500');
+                
+                const files = e.dataTransfer.files;
+                if (files.length > 0) {
+                    fileUpload.files = files;
+                    dropzoneText.textContent = files[0].name;
+                }
+            });
+        }
+
+        // Handle form submission
+        if (uploadForm) {
+            uploadForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const complianceType = document.getElementById('compliance-type').value;
+                const file = fileUpload.files[0];
+                
+                if (!complianceType) {
+                    alert('Please select a compliance type');
+                    return;
+                }
+                
+                if (!file) {
+                    alert('Please select a file to upload');
+                    return;
+                }
+                
+                // Simulate upload process
+                const button = uploadForm.querySelector('button[type="submit"]');
+                const originalText = button.textContent;
+                button.textContent = 'Uploading...';
+                button.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Document uploaded successfully!');
+                    button.textContent = originalText;
+                    button.disabled = false;
+                    uploadForm.reset();
+                    dropzoneText.textContent = 'Click to upload a file or drag and drop';
+                }, 2000);
+            });
+        }
+    });
+</script>
